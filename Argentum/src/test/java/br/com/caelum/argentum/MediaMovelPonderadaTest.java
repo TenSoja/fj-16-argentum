@@ -5,13 +5,14 @@ import junit.framework.Assert;
 import org.junit.Test;
 
 import br.com.caelum.argentum.indicadores.GeradorDeSerie;
+import br.com.caelum.argentum.indicadores.IndicadorFechamento;
 
 public class MediaMovelPonderadaTest {
 
 	@Test
 	public void sequenciaSimplesDeCandles() {
 		SerieTemporal serie = GeradorDeSerie.criaSerie(1, 2, 3, 4, 5, 6);
-		MediaMovelPonderada mmp = new MediaMovelPonderada();
+		MediaMovelPonderada mmp = new MediaMovelPonderada(new IndicadorFechamento());
 		
 		
 		

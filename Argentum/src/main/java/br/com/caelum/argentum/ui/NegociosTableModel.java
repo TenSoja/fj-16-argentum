@@ -3,7 +3,6 @@ package br.com.caelum.argentum.ui;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.Locale;
 
 import javax.swing.table.AbstractTableModel;
 

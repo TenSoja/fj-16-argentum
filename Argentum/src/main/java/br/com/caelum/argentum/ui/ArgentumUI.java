@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Locale;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -156,7 +155,7 @@ public class ArgentumUI {
 			SerieTemporal serie = new SerieTemporal(candles);
 			
 			GeradorDeGrafico gerador = new GeradorDeGrafico(serie, 2, serie.getTotal() - 1);
-			gerador.plotaIndicador(new MediaMovelSimples());
+			gerador.plotaIndicador(new MediaMovelSimples(new IndicadorFechamento()));
 			gerador.plotaIndicador(new IndicadorFechamento());
 			
 			abas.setComponentAt(1, gerador.getPanel());

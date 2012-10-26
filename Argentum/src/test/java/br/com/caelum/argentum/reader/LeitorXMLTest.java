@@ -1,7 +1,5 @@
 package br.com.caelum.argentum.reader;
 
-import static org.junit.Assert.*;
-
 import java.io.StringReader;
 import java.util.List;
 
@@ -9,9 +7,9 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
-import com.thoughtworks.xstream.io.StreamException;
-
 import br.com.caelum.argentum.Negocio;
+
+import com.thoughtworks.xstream.io.StreamException;
 
 public class LeitorXMLTest {
 
