@@ -14,10 +14,17 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 
+import br.com.caelum.argentum.Candle;
 import br.com.caelum.argentum.Negocio;
+import br.com.caelum.argentum.SerieTemporal;
+import br.com.caelum.argentum.grafico.GeradorDeGrafico;
+import br.com.caelum.argentum.indicadores.IndicadorFechamento;
+import br.com.caelum.argentum.indicadores.MediaMovelSimples;
+import br.com.caelum.argentum.reader.CandlestickFactory;
 
 public class ArgentumUI {
 	
@@ -25,6 +32,7 @@ public class ArgentumUI {
 	private JPanel painelPrincipal;
 	private JTable tabela;
 	private JPanel painelBotoes;
+	private JTabbedPane abas;
 	
 	public static void main(String[] args) {
 		Locale.setDefault(new Locale("pt", "BR"));
@@ -36,6 +44,7 @@ public class ArgentumUI {
 		
 		preparaJanela();
 		preparaPainelPrincipal();
+		preparaAbas();
 		preparaTitulo();
 		preparaTabela();
 		preparaPainelBotoes();
@@ -43,6 +52,16 @@ public class ArgentumUI {
 		preparaBotaoSair();
 		mostraJanela();
 
+	}
+
+	
+	private void preparaAbas() {
+		abas = new JTabbedPane();
+		abas.addTab("Tabela", null);
+		abas.addTab("Gráfico", null);
+		painelPrincipal.add(abas);
+
+		
 	}
 
 	private void preparaPainelBotoes() {
@@ -58,9 +77,10 @@ public class ArgentumUI {
 		tabela = new JTable();
 		JScrollPane scroll = new JScrollPane();
 		scroll.getViewport().add(tabela);
-		painelPrincipal.add(scroll, BorderLayout.CENTER);
+		//painelPrincipal.add(scroll, BorderLayout.CENTER);
 
 		//painelPrincipal.add(scroll);
+		abas.setComponentAt(0, scroll);
 
 
 		
@@ -88,10 +108,7 @@ public class ArgentumUI {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			//	new EscolhedorDeXML().escolhe();
-				List<Negocio> lista = new EscolhedorDeXML().escolhe();
-				NegociosTableModel ntm = new NegociosTableModel(lista);
-				tabela.setModel(ntm);
+			carregaDados();
 
 			}
 		});
@@ -126,6 +143,26 @@ public class ArgentumUI {
 		janela.setSize(540,540);
 		janela.setVisible(true);
 		 
+	}
+
+	private void carregaDados() {
+		//	new EscolhedorDeXML().escolhe();
+			List<Negocio> lista = new EscolhedorDeXML().escolhe();
+			NegociosTableModel ntm = new NegociosTableModel(lista);
+			tabela.setModel(ntm);
+			
+			CandlestickFactory fabrica = new CandlestickFactory();
+			List<Candle> candles = fabrica.constroiCandles(lista);
+			SerieTemporal serie = new SerieTemporal(candles);
+			
+			GeradorDeGrafico gerador = new GeradorDeGrafico(serie, 2, serie.getTotal() - 1);
+			gerador.plotaIndicador(new MediaMovelSimples());
+			gerador.plotaIndicador(new IndicadorFechamento());
+			
+			abas.setComponentAt(1, gerador.getPanel());
+
+
+
 	}
 
 }
