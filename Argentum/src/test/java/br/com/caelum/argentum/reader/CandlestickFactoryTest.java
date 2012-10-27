@@ -16,10 +16,10 @@ public class CandlestickFactoryTest {
 	@Test
 	public void sequenciaSimplesDeNegocios() {
 		Calendar hoje = Calendar.getInstance();
-		Negocio negocio1 = new Negocio(40.5, 100, hoje);
-		Negocio negocio2 = new Negocio(45.0, 100, hoje);
-		Negocio negocio3 = new Negocio(39.8, 100, hoje);
-		Negocio negocio4 = new Negocio(42.3, 100, hoje);
+		Negocio negocio1 = new Negocio(40.5, 100, 4050, hoje);
+		Negocio negocio2 = new Negocio(45.0, 100, 4500, hoje);
+		Negocio negocio3 = new Negocio(39.8, 100, 3980, hoje);
+		Negocio negocio4 = new Negocio(42.3, 100, 4230, hoje);
 		
 		List<Negocio> negocios = Arrays.asList(negocio1, negocio2, negocio3, negocio4);
 		
@@ -55,7 +55,7 @@ public class CandlestickFactoryTest {
 	public void apenasUmNegocioGeraCandleComValoresIguais(){
 		Calendar hoje = Calendar.getInstance();
 		
-		Negocio negocio1 = new Negocio(40.5, 100, hoje);
+		Negocio negocio1 = new Negocio(40.5, 100,4050, hoje);
 		
 		List<Negocio> negocios = Arrays.asList(negocio1);
 		
@@ -72,10 +72,10 @@ public class CandlestickFactoryTest {
 	@Test
 	public void negociosEmOrdemCrescenteDeValor(){
 		Calendar hoje = Calendar.getInstance();
-		Negocio negocio1 = new Negocio(40.0, 100, hoje);
-		Negocio negocio2 = new Negocio(41.0, 100, hoje);
-		Negocio negocio3 = new Negocio(42.0, 100, hoje);
-		Negocio negocio4 = new Negocio(43.0, 100, hoje);
+		Negocio negocio1 = new Negocio(40.0, 100, 4000, hoje);
+		Negocio negocio2 = new Negocio(41.0, 100, 4100, hoje);
+		Negocio negocio3 = new Negocio(42.0, 100, 4200, hoje);
+		Negocio negocio4 = new Negocio(43.0, 100, 4300, hoje);
 		
 		List<Negocio> negocios = Arrays.asList(negocio1, negocio2, negocio3, negocio4);
 		
@@ -91,10 +91,10 @@ public class CandlestickFactoryTest {
 	@Test
 	public void negociosEmOrdemDecrescenteDeValor(){
 		Calendar hoje = Calendar.getInstance();
-		Negocio negocio1 = new Negocio(43.0, 100, hoje);
-		Negocio negocio2 = new Negocio(42.0, 100, hoje);
-		Negocio negocio3 = new Negocio(41.0, 100, hoje);
-		Negocio negocio4 = new Negocio(40.0, 100, hoje);
+		Negocio negocio1 = new Negocio(43.0, 100, 4300, hoje);
+		Negocio negocio2 = new Negocio(42.0, 100, 4200, hoje);
+		Negocio negocio3 = new Negocio(41.0, 100, 4100, hoje);
+		Negocio negocio4 = new Negocio(40.0, 100, 4000, hoje);
 		
 		List<Negocio> negocios = Arrays.asList(negocio1, negocio2, negocio3, negocio4);
 		
@@ -118,22 +118,23 @@ public class CandlestickFactoryTest {
 	public void paraNegociosDeTresDiasDistintosGeraTresCandles(){
 		Calendar hoje = Calendar.getInstance();
 		
-		Negocio negocio1 = new Negocio(40.5, 100, hoje);
-		Negocio negocio2 = new Negocio(45.0, 100, hoje);
-		Negocio negocio3 = new Negocio(39.8, 100, hoje);
-		Negocio negocio4 = new Negocio(42.3, 100, hoje);
+		Negocio negocio1 = new Negocio(40.5, 100, 4050, hoje);
+		Negocio negocio2 = new Negocio(45.0, 100, 4500, hoje);
+		Negocio negocio3 = new Negocio(39.8, 100, 3980, hoje);
+		Negocio negocio4 = new Negocio(42.3, 100, 4230, hoje);
 		
+	
 		Calendar amanha = (Calendar) hoje.clone();
 		amanha.add(Calendar.DAY_OF_MONTH, 1);
 		
-		Negocio negocio5 = new Negocio(48.8, 100, amanha);
-		Negocio negocio6 = new Negocio(49.3, 100, amanha);
+		Negocio negocio5 = new Negocio(48.8, 100, 4880, amanha);
+		Negocio negocio6 = new Negocio(49.3, 100, 4930, amanha);
 		
 		Calendar depois = (Calendar) amanha.clone();
 		depois.add(Calendar.DAY_OF_MONTH, 1);
 		
-		Negocio negocio7 = new Negocio(51.8, 100, depois);
-		Negocio negocio8 = new Negocio(52.3, 100, depois);
+		Negocio negocio7 = new Negocio(51.8, 100, 5180, depois);
+		Negocio negocio8 = new Negocio(52.3, 100, 5230, depois);
 		
 		List<Negocio> negocios = Arrays.asList(negocio1, negocio2, negocio3,
 					negocio4, negocio5, negocio6, negocio7, negocio8);

@@ -29,7 +29,7 @@ public class NegociosTableModel extends AbstractTableModel {
 	@Override
 	public int getColumnCount() {
 		// TODO Auto-generated method stub
-		return 3;
+		return 4;
 	}
 	@Override
 	public Object getValueAt(int linha, int coluna) {
@@ -40,6 +40,8 @@ public class NegociosTableModel extends AbstractTableModel {
 		case 1:
 			return negocio.getQuantidade();
 		case 2:
+			return negocio.getVolume();
+		case 3:
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 			return sdf.format(negocio.getData().getTime());
 		}
@@ -53,6 +55,8 @@ public class NegociosTableModel extends AbstractTableModel {
 		case 1:
 			return "Quantidade";
 		case 2:
+			return "Volume";
+		case 3:
 			return "Data";
 		}
 			return "";

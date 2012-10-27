@@ -13,8 +13,8 @@ public class NegocioTest {
 		
 		Calendar c = Calendar.getInstance();
 		c.set(Calendar.DAY_OF_MONTH, 15);
-		Negocio n = new Negocio(10, 5, c);
-		
+		Negocio n = new Negocio(10, 5, 50, c);
+				
 		n.getData().set(Calendar.DAY_OF_MONTH, 20);
 		
 		Assert.assertEquals(15, n.getData().get(Calendar.DAY_OF_MONTH));
@@ -22,14 +22,14 @@ public class NegocioTest {
 	}
 	@Test(expected=IllegalArgumentException.class)
 	public void naoCriaNegocioComDataNula(){
-		new Negocio(10, 5, null);
+		new Negocio(10, 5, 50, null);
 	}
 	@Test
 	public void mesmoMilissegundoEhDoMesmoDia() {
 		Calendar agora = Calendar.getInstance();
 		Calendar mesmoMomento = (Calendar) agora.clone();
 		
-		Negocio negocio = new Negocio(40.0, 100, agora);
+		Negocio negocio = new Negocio(40.0, 100, 4000, agora);
 		Assert.assertTrue(negocio.isMesmoDia(mesmoMomento));
 	}
 	@Test
@@ -38,7 +38,7 @@ public class NegocioTest {
 		Calendar manha = new GregorianCalendar(2011, 10, 20, 8, 30);
 		Calendar tarde = new GregorianCalendar(2011, 10, 20, 15, 30);
 	
-		Negocio negocio = new Negocio(40.0, 100, manha);
+		Negocio negocio = new Negocio(40.0, 100, 4000, manha);
 		Assert.assertTrue(negocio.isMesmoDia(tarde));
 	}
 	@Test
@@ -47,7 +47,7 @@ public class NegocioTest {
 		Calendar dia1 = new GregorianCalendar(2009, 10, 25, 8, 30);
 		Calendar dia2 = new GregorianCalendar(2010, 10, 25, 15, 30);
 		
-		Negocio negocio = new Negocio(40.0, 100, dia1);
+		Negocio negocio = new Negocio(40.0, 100, 4000, dia1);
 		Assert.assertFalse(negocio.isMesmoAno(dia2));
 		
 	}

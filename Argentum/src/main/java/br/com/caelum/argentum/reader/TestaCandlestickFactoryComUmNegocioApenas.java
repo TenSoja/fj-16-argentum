@@ -12,7 +12,7 @@ public class TestaCandlestickFactoryComUmNegocioApenas {
 		
 		Calendar hoje = Calendar.getInstance();
 		
-		Negocio negocio1 = new Negocio(40.5, 100, hoje);
+		Negocio negocio1 = new Negocio(40.5, 100, 4050, hoje);
 		
 		List<Negocio> negocios = Arrays.asList(negocio1);
 		
